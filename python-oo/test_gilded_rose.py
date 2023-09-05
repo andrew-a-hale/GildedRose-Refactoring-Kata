@@ -29,7 +29,7 @@ def test_quality_never_negative():
 def test_aged_brie_quality_increase_over_time():
     item = Item(AGED_BRIE, 3, 0)
     update_quality_single(item)
-    assert item.quality == 5
+    assert item.quality == 6
 
 
 def test_max_quality_is_50():
