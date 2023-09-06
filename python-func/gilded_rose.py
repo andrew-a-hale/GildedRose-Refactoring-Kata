@@ -1,6 +1,13 @@
 from typing import List
-from item import Item
-from item import ItemType
+import items
+
+Item = (
+    items.LegendaryItem
+    | items.AgedItem
+    | items.ConjuredItem
+    | items.PerishableItem
+    | items.Item
+)
 
 
 def increment_quality(item: Item, n: int = 1, max: int = 50) -> None:
@@ -52,14 +59,14 @@ def default_item_updater(item: Item):
 
 
 def update_quality_single(item: Item) -> None:
-    match item:
-        case Item(type=ItemType.legendary):
+    match type(item):
+        case items.LegendaryItem:
             legendary_item_updater(item)
-        case Item(type=ItemType.aged):
+        case items.AgedItem:
             aged_item_updater(item)
-        case Item(type=ItemType.perishable):
+        case items.PerishableItem:
             perishable_item_updater(item)
-        case Item(type=ItemType.conjured):
+        case items.ConjuredItem:
             conjured_item_updater(item)
         case _:
             default_item_updater(item)
